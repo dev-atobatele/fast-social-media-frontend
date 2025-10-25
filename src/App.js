@@ -12,7 +12,7 @@ function App() {
 
   // Fetch all messages (public)
   const fetchMessages = async () => {
-    const res = await API.get("/messages");
+    const res = await API.get("/api/messages");
     setMessages(res.data);
   };
 
@@ -23,7 +23,7 @@ function App() {
   // Login for existing users
   const handleLogin = async () => {
     try {
-      const res = await API.post("/token", new URLSearchParams({
+      const res = await API.post("/api/token", new URLSearchParams({
         username,
         password
       }));
@@ -37,7 +37,7 @@ function App() {
 
   const handleRegister = async () => {
   try {
-    await API.post("/users", {
+    await API.post("/api/users", {
       username,
       email,
       password,
@@ -54,7 +54,7 @@ function App() {
   try {
     const token = localStorage.getItem("token"); // or however you're storing it
 
-    await API.post("/messages", 
+    await API.post("/api/messages", 
       { content: newMessage },
       {
         headers: {
@@ -74,7 +74,7 @@ function App() {
   // Delete message
   const handleDelete = async (id) => {
     try {
-      await API.delete(`/messages/${id}`);
+      await API.delete(`/api/messages/${id}`);
       fetchMessages();
     } catch {
       alert("You can only delete your own messages!");
