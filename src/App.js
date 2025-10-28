@@ -88,7 +88,8 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin && handleRegister}>Login</button>
+          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleRegister}>Create Account</button>
         </div>
         ) : (
         <div>
