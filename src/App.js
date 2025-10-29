@@ -7,6 +7,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
 
 
   // Fetch all messages (public)
@@ -38,7 +39,8 @@ function App() {
   try {
     await API.post("/api/users", {
       username,
-      password
+      email,
+      password,
     });
     alert("Account created! You can log in now.");
   } catch (err) {
@@ -69,6 +71,15 @@ function App() {
 };
 
 
+  // Delete message
+  const handleDelete = async (id) => {
+    try {
+      await API.delete(`/api/messages/${id}`);
+      fetchMessages();
+    } catch {
+      alert("You can only delete your own messages!");
+    }
+  };
 // --- return JSX here ---
   return (
     <div style={{ padding: "2rem" }}>
@@ -76,7 +87,7 @@ function App() {
 
       {!loggedIn ? (
         <div>
-          <h3>Login or Create Account</h3>
+          <h3>Login</h3>
           <input
             placeholder="Username"
             value={username}
@@ -89,9 +100,34 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button onClick={handleLogin}>Login</button>
+<<<<<<< HEAD
           <button onClick={handleRegister}>Create Account</button>
         </div>
         ) : (
+=======
+
+          <h4>or Create Account</h4>
+
+<input
+  placeholder="Username"
+  value={username}
+  onChange={(e) => setUsername(e.target.value)}
+/>
+<input
+  type="email"
+  placeholder="Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+<input
+  type="password"
+  placeholder="Password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
+<button onClick={handleRegister}>Create Account</button></div>
+      ) : (
+>>>>>>> parent of db4b3ae (removed unused update and delete functions)
         <div>
           <h3>Create Message</h3>
           <input
@@ -103,13 +139,13 @@ function App() {
         </div>
       )}
 
-        <h2>All Messages</h2>
-        <ul>
-          {messages.map((m) => (
-            <li key={m.owner}>{m.content}</li>
-          ))}
-        </ul>
-      </div>
+      <h2>All Messages</h2>
+      <ul>
+        {messages.map((m) => (
+          <li key={m.id}>{m.content}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
