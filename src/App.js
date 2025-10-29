@@ -100,11 +100,6 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button onClick={handleLogin}>Login</button>
-<<<<<<< HEAD
-          <button onClick={handleRegister}>Create Account</button>
-        </div>
-        ) : (
-=======
 
           <h4>or Create Account</h4>
 
@@ -127,7 +122,6 @@ function App() {
 />
 <button onClick={handleRegister}>Create Account</button></div>
       ) : (
->>>>>>> parent of db4b3ae (removed unused update and delete functions)
         <div>
           <h3>Create Message</h3>
           <input
